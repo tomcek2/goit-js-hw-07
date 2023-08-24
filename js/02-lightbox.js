@@ -12,12 +12,12 @@ for (const item of galleryItems) {
   imageSmall.push(item.preview);
   imageText.push(item.description);
 }
-
+const galleryLinks = [];
 for (let i = 0; i < imageLarge.length; i++) {
   const galleryLink = document.createElement("a");
   galleryLink.classList.add("gallery__item");
   galleryLink.href = `${imageLarge[i]}`;
-  gallery.append(galleryLink);
+  galleryLinks.push(galleryLink);
 
   const galleryImage = document.createElement("img");
   galleryImage.classList.add("gallery__image");
@@ -25,6 +25,7 @@ for (let i = 0; i < imageLarge.length; i++) {
   galleryImage.alt = `${imageText[i]}`;
   galleryLink.append(galleryImage);
 }
+gallery.append(...galleryLinks);
 
 const galleryLightbox = new SimpleLightbox(".gallery a", {
   captions: true,

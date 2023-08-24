@@ -13,10 +13,11 @@ for (const item of galleryItems) {
   imageText.push(item.description);
 }
 
+const galleryLinks = [];
 for (let i = 0; i < imageLarge.length; i++) {
   const galleryItem = document.createElement("div");
   galleryItem.classList.add("gallery__item");
-  gallery.append(galleryItem);
+  galleryLinks.push(galleryItem);
 
   const galleryLink = document.createElement("a");
   galleryLink.classList.add("gallery__link");
@@ -30,6 +31,8 @@ for (let i = 0; i < imageLarge.length; i++) {
   galleryImage.alt = `${imageText[i]}`;
   galleryLink.append(galleryImage);
 }
+
+gallery.append(...galleryLinks);
 
 const modalWindow = (e) => {
   e.preventDefault();
