@@ -3,32 +3,22 @@ import { galleryItems } from "./gallery-items.js";
 
 const gallery = document.querySelector(".gallery");
 
-const imageLarge = [];
-const imageSmall = [];
-const imageText = [];
-
-for (const item of galleryItems) {
-  imageLarge.push(item.original);
-  imageSmall.push(item.preview);
-  imageText.push(item.description);
-}
-
 const galleryLinks = [];
-for (let i = 0; i < imageLarge.length; i++) {
+for (let i = 0; i < galleryItems.length; i++) {
   const galleryItem = document.createElement("div");
   galleryItem.classList.add("gallery__item");
   galleryLinks.push(galleryItem);
 
   const galleryLink = document.createElement("a");
   galleryLink.classList.add("gallery__link");
-  galleryLink.href = `${imageLarge[i]}`;
+  galleryLink.href = `${galleryItems[i].original}`;
   galleryItem.append(galleryLink);
 
   const galleryImage = document.createElement("img");
   galleryImage.classList.add("gallery__image");
-  galleryImage.src = `${imageSmall[i]}`;
-  galleryImage.dataset.source = `${imageLarge[i]}`;
-  galleryImage.alt = `${imageText[i]}`;
+  galleryImage.src = `${galleryItems[i].preview}`;
+  galleryImage.dataset.source = `${galleryItems[i].original}`;
+  galleryImage.alt = `${galleryItems[i].description}`;
   galleryLink.append(galleryImage);
 }
 
