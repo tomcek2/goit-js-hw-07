@@ -24,7 +24,5 @@ const galleryLightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionDelay: 250,
 });
-galleryLightbox.on("show.simplelightbox", (e) => {
-  e.preventDefault();
-});
+galleryLightbox.on("show.simplelightbox");
 console.log(galleryItems);

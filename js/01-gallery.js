@@ -26,17 +26,25 @@ gallery.append(...galleryLinks);
 
 const modalWindow = (e) => {
   e.preventDefault();
+
+  const modalWindowClose = (e) => {
+    if (e.code == "Escape") {
+      imageInstance.close();
+    }
+  };
+
   const imageInstance = basicLightbox.create(
-    `<img src="${e.target.dataset.source}" width="800" height="600"></img>`
+    `<img src="${e.target.dataset.source}" width="800" height="600"></img>`,
+    {
+      onShow: (instance) => {
+        document.addEventListener("keydown", modalWindowClose);
+      },
+      onClose: (instance) => {
+        document.removeEventListener("keydown", modalWindowClose);
+      },
+    }
   );
   imageInstance.show();
-  document.addEventListener("keydown", (e) => {
-    if (e.code == "Escape") {
-      if (basicLightbox.visible()) {
-        imageInstance.close();
-      }
-    }
-  });
 };
 
 gallery.addEventListener("click", modalWindow);
